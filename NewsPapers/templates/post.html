@@ -1,0 +1,23 @@
+<!--  наследуемся от шаблона default.html, который мы создавали для flatpages -->
+{% extends 'flatpages/default.html' %}
+
+{% load censor %}
+<!-- Название у нас будет Product -->
+{% block title %}
+{{ Post.title|censor }}
+{% endblock title %}
+
+
+{% block content %}
+<td>{% for cat in Post.postCategory.all %}
+        {{ cat.name }}
+    {% endfor %}
+</td>
+<hr>
+<td>{{ Post.title|censor }}</td>
+<hr>
+<td>{{ Post.text|censor }}</td>
+<hr>
+<td>{{ Post.author.authorUser }}</td>
+<td>{{ Post.dateCreation|date:"d M, Y" }}</td>
+{% endblock content %}
